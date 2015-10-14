@@ -4,6 +4,7 @@
 
 #![feature(alloc)]
 #![feature(box_syntax)]
+#![feature(const_fn)]
 #![feature(core_intrinsics)]
 #![feature(custom_derive)]
 #![feature(fnbox)]
@@ -73,6 +74,7 @@ pub mod task_state;
 pub mod taskpool;
 pub mod tid;
 pub mod vec;
+pub mod telemetry;
 pub mod workqueue;
 
 pub fn breakpoint() {

@@ -173,6 +173,11 @@ pub struct Opts {
 
     /// Do not use native titlebar
     pub no_native_titlebar: bool,
+
+    /// `true` if we wish to capture measurements through Telemetry,
+    /// `false` otherwise. Telemetry measurements are dumped at the
+    /// end of execution.
+    pub is_telemetry_enabled: bool,
 }
 
 fn print_usage(app: &str, opts: &Options) {
@@ -424,6 +429,7 @@ pub fn default_opts() -> Opts {
         parallel_display_list_building: false,
         exit_after_load: false,
         no_native_titlebar: false,
+        is_telemetry_enabled: false,
     }
 }
 
@@ -465,7 +471,7 @@ pub fn from_cmdline_args(args: &[String]) {
     opts.optmulti("", "pref",
                   "A preference to set to enable", "dom.mozbrowser.enabled");
     opts.optflag("b", "no-native-titlebar", "Do not use native titlebar");
-
+    opts.optflag("", "enable-telemetry", "Collect data through Telemetry");
     let opt_match = match opts.parse(args) {
         Ok(m) => m,
         Err(f) => args_fail(&f.to_string()),
@@ -630,6 +636,7 @@ pub fn from_cmdline_args(args: &[String]) {
         parallel_display_list_building: debug_options.parallel_display_list_building,
         exit_after_load: opt_match.opt_present("x"),
         no_native_titlebar: opt_match.opt_present("b"),
+        is_telemetry_enabled: opt_match.opt_present("enable-telemetry"),
     };
 
     set_defaults(opts);

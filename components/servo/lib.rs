@@ -76,6 +76,7 @@ use std::borrow::Borrow;
 use std::rc::Rc;
 use std::sync::mpsc::Sender;
 use util::opts;
+pub use util::telemetry;
 
 pub use _util as util;
 pub use export::canvas;
@@ -97,6 +98,7 @@ pub use export::script;
 pub use export::script_traits;
 pub use export::style;
 pub use export::url;
+
 
 pub struct Browser {
     compositor: Box<CompositorEventListener + 'static>,
